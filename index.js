@@ -10,7 +10,6 @@ const PORT = 5000;
 // Set up dependencies
 'use strict';
 
-const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -27,9 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // function handleRequest(request, response){
 //   response.end('Ngrok is working! -  Path Hit: ' + request.url);
 // }
-// 
+//
 // var serverA = http.createServer(handleRequest);
-// 
+//
 // // Finally we start the server
 // serverA.listen(PORT, function(){
 //   // Callback triggered when server is successfully listening. Hurray!
@@ -37,14 +36,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 
 
-// Respond to Slack's request with given challenge value
-app.post('/event', (req, res) => {
-    if (req.body.type === 'url_verification') {
+// Respond to Slack's URL verification request with given challenge value
+app.post('/', (req, res) => {
+    let q = req.body;
+    if (q.type === 'url_verification') {
 	res.send(q.challenge);
     }
 
     // Bot definition/activity
-    
+
 });
 
 // Sample GET method (requires at least one)
@@ -54,6 +54,6 @@ app.get('/', function(req, res) {
 
 
 // Start server at given PORT
-const server = app.listen(PORT, () => {  
+const server = app.listen(PORT, () => {
     console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
