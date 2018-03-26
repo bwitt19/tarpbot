@@ -36,16 +36,38 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 
 
-// Respond to Slack's URL verification request with given challenge value
+// POST request
 app.post('/', (req, res) => {
     let q = req.body;
-    if (q.type === 'url_verification') {
-	res.send(q.challenge);
+
+    // If request is not coming from Slack (check token)
+    if (q.token !== process.env.SLACK_VERIFICATION_TOKEN) {
+    	res.sendStatus(400);
+    	return;
     }
 
-    // Bot definition/activity
+    // Respond to Slack's URL verification request with given challenge value
+    if (q.type === 'url_verification') {
+    	res.send(q.challenge);
+    }
+    // Events - get message text
+    else if (q.type === 'event_callback') {
+        // If no text, return
+    	if (!q.event.text) return;
+
+        // Exclude bot messages and slash commands
+        let regex = /(^\/)/;
+        if (q.event.subtype === 'bot_message' || regex.test(q.event.text)) return;
+
+    	analyzeTone(q.event); // Defined below: tone analysis
+        res.sendStatus(200);
+    }
 
 });
+
+function analyzeTone(event) {
+    // To be defined -- Watson tone analysis occurs here
+}
 
 // Sample GET method (requires at least one)
 app.get('/', function(req, res) {
