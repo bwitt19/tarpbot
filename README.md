@@ -1,5 +1,6 @@
 # tarpBot
-##### Slack (channel analysis) bot using Slack API &amp; (soon!) IBM Watson.
+Slack (channel analysis) bot using Slack API &amp; (soon!) IBM Watson. *A.K.A: **T**eamwork **A**nalysis **R**esearch **P**roject **Bot***
+
 Currently: can connect to the Slack API and bring down text entered by users. Tone analysis and text eporting is coming in the near future.
 
 - Built with Node.js.
