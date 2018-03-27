@@ -1,5 +1,5 @@
 # tarpBot
-Slack (channel analysis) bot using Slack API &amp; IBM Watson.
+##### Slack (channel analysis) bot using Slack API &amp; (soon!) IBM Watson.
 Currently: can connect to the Slack API and bring down text entered by users. Tone analysis and text eporting is coming in the near future.
 
 - Built with Node.js.
@@ -15,7 +15,9 @@ npm install
 // (e.g. express, body-parser, and their dependencies)
 ```
 
-To run the program, just type `node path/to/index` or `node index` if already in the directory.
+### To run the program:
+
+Just open Terminal/PowerShell and type `node path/to/index` or `node index` if already in the directory.
 At some point I'll make a bash script/.exe installer to expedite this process, but this should work for now.
 
 If you have any comments/concerns/**bugs!!**, please let me know! :)
